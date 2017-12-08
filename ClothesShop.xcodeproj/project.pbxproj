@@ -37,6 +37,7 @@
 		E8917C1E1FBDC12E00746974 /* UIVisualEffectViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8917C141FBDC12E00746974 /* UIVisualEffectViewX.swift */; };
 		E8917C211FBDC3E700746974 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8917C201FBDC3E700746974 /* RegisterController.swift */; };
 		E8917C241FBDC5B600746974 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8917C231FBDC5B600746974 /* Extension.swift */; };
+		E8A66B9D1FDAC72900B7D929 /* DropMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A66B9C1FDAC72900B7D929 /* DropMenuButton.swift */; };
 		E8BBA3EC1FC990C2002ADD8D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BBA3EB1FC990C2002ADD8D /* User.swift */; };
 		E8BBA3EE1FC9A85E002ADD8D /* slideMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BBA3ED1FC9A85E002ADD8D /* slideMenuItem.swift */; };
 		E8C27ECC1FCA91E7004CC70E /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C27ECB1FCA91E7004CC70E /* MenuBarView.swift */; };
@@ -85,6 +86,7 @@
 		E8917C141FBDC12E00746974 /* UIVisualEffectViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVisualEffectViewX.swift; sourceTree = "<group>"; };
 		E8917C201FBDC3E700746974 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		E8917C231FBDC5B600746974 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		E8A66B9C1FDAC72900B7D929 /* DropMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropMenuButton.swift; sourceTree = "<group>"; };
 		E8BBA3EB1FC990C2002ADD8D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E8BBA3ED1FC9A85E002ADD8D /* slideMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = slideMenuItem.swift; sourceTree = "<group>"; };
 		E8C27ECB1FCA91E7004CC70E /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 		E8917C221FBDC59F00746974 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				E8A66B9C1FDAC72900B7D929 /* DropMenuButton.swift */,
 				E8917C231FBDC5B600746974 /* Extension.swift */,
 			);
 			path = Extension;
@@ -418,6 +421,7 @@
 				E8917C171FBDC12E00746974 /* UILabelX.swift in Sources */,
 				E80F194E1FD6CC6600470368 /* AddCartController.swift in Sources */,
 				E8917C1B1FBDC12E00746974 /* UIViewControllerX.swift in Sources */,
+				E8A66B9D1FDAC72900B7D929 /* DropMenuButton.swift in Sources */,
 				E8917C191FBDC12E00746974 /* UITextFieldX.swift in Sources */,
 				E8917C211FBDC3E700746974 /* RegisterController.swift in Sources */,
 				E8F479811FC6FC9600DDBBA7 /* SlideMenuCell.swift in Sources */,

@@ -10,26 +10,58 @@ import UIKit
 
 class AddCartController: UIViewController {
 
+    @IBOutlet weak var imageProduct: UIImageView!
+    @IBOutlet weak var nameProduct: UILabel!
+    @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var size: DropMenuButton!
+    @IBOutlet weak var colour: DropMenuButton!
+    
+    var product: Product?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setLayout()
+        handleSelectSize()
+        handleSelectColour()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func setLayout() {
+        if let imageUrl = product?.image {
+            imageProduct.loadImageFromCacheWithUrlString(urlString: imageUrl)
+        }
+        nameProduct.text = product?.nameProduct
+        price.text = String(describing: product?.price)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func setBorderButton() {
+        size.layer.borderWidth = 2
+        size.layer.borderColor = UIColor(r: 229, g: 233, b: 236).cgColor
+        
+        colour.layer.borderWidth = 2
+        colour.layer.borderColor = UIColor(r: 229, g: 233, b: 236).cgColor
     }
-    */
+    
+    func handleSelectSize() {
+        size.initMenu(["XS", "S", "M", "L"], actions: [({ () -> (Void) in
+           
+        }), ({ () -> (Void) in
+           
+        }), ({ () -> (Void) in
+           
+        }), ({ () -> (Void) in
+            
+        })])
+    }
+    
+    func handleSelectColour() {
+        colour.initMenu(["yellow", "red", "blue"], actions: [({ () -> (Void) in
+            
+        }), ({ () -> (Void) in
+            
+        }), ({ () -> (Void) in
+            
+        })])
+    }
 
 }

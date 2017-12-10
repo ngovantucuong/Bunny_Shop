@@ -13,6 +13,7 @@ class MenuBarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource,
     let cellID = "cellID"
     var category = [String]()
     var categoriesController: CategoryProductController?
+    var cartController: CartController?
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()

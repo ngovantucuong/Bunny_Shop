@@ -27,6 +27,9 @@ class MenuController: UIViewController, UITableViewDataSource, UITableViewDelega
         setupLayout()
         tableView.dataSource = self
         tableView.delegate = self
+        
+        let uiNib = UINib(nibName: "SlideMenuCell", bundle: nil)
+        tableView.register(uiNib, forCellReuseIdentifier: cellID)
     }
 
     private func setupLayout() {

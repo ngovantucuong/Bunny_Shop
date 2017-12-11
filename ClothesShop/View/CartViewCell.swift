@@ -16,8 +16,8 @@ class CartViewCell: UICollectionViewCell {
     @IBOutlet weak var quantity: UILabel!
     @IBOutlet weak var size: UILabel!
     @IBOutlet weak var colour: UILabel!
-    
-    var qualtityProduct: Int?
+    @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var deleteProduct: UIButton!
     
     var cartProduct: ProductCart? {
         didSet {
@@ -25,13 +25,16 @@ class CartViewCell: UICollectionViewCell {
             self.nameProduct.text = cartProduct?.nameProduct
             self.size.text = cartProduct?.size
             self.colour.text = cartProduct?.colour
-            self.quantity.text = String(describing: qualtityProduct!)
+            let price = "$\(cartProduct!.price ?? "")"
+            self.price.text = price
+            self.quantity.text = String(describing: cartProduct!.quantity)
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        deleteProduct.isHidden = true
     }
     
 }

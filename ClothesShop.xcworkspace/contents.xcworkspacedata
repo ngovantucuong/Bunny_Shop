@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/apple/Documents/ios-material/Practice-IOS/Project_Example/ShopBunny/ClothesShop/CoreData/ProductCart+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/apple/Documents/ios-material/Practice-IOS/Project_Example/ShopBunny/ClothesShop/CoreData/ProductCart+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:ClothesShop.xcodeproj">
    </FileRef>
    <FileRef

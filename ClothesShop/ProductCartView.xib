@@ -20,33 +20,41 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vHw-t1-NU8">
-                        <rect key="frame" x="8" y="8" width="120" height="121"/>
+                        <rect key="frame" x="26" y="8" width="120" height="121"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="7Q3-8R-6gD"/>
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Dfq-G1-nzE">
-                        <rect key="frame" x="140" y="18" width="272" height="98.5"/>
+                        <rect key="frame" x="158" y="29" width="254" height="94.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="Q4L-9g-WnO">
-                                <rect key="frame" x="0.0" y="0.0" width="246.5" height="20.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="246.5" height="16.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KW ANDERSON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEI-ie-bTb">
-                                        <rect key="frame" x="0.0" y="0.0" width="122.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="122.5" height="16.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$23.34" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nF2-cD-hJe">
-                                        <rect key="frame" x="202.5" y="0.0" width="44" height="20.5"/>
+                                        <rect key="frame" x="202.5" y="0.0" width="44" height="16.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16.5" id="8Fk-LK-SYM"/>
+                                            <constraint firstAttribute="width" constant="44" id="ZDz-Aw-2At"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="nF2-cD-hJe" secondAttribute="trailing" id="SQN-jv-Fyg"/>
+                                    <constraint firstItem="nF2-cD-hJe" firstAttribute="top" secondItem="Q4L-9g-WnO" secondAttribute="top" id="ZBu-JC-c8i"/>
+                                </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="VhM-aV-C1S">
-                                <rect key="frame" x="0.0" y="40.5" width="89.5" height="58"/>
+                                <rect key="frame" x="0.0" y="36.5" width="89.5" height="58"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aIY-T5-Zdn">
                                         <rect key="frame" x="0.0" y="0.0" width="66.5" height="16"/>
@@ -103,27 +111,42 @@
                             </stackView>
                         </subviews>
                     </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NeC-xb-HWo">
+                        <rect key="frame" x="366" y="7" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="fDF-1h-bom"/>
+                            <constraint firstAttribute="height" constant="20" id="k8L-EC-mJ0"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="delete"/>
+                    </button>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="Dfq-G1-nzE" firstAttribute="leading" secondItem="vHw-t1-NU8" secondAttribute="trailing" constant="12" id="6ki-Y3-pRo"/>
-                <constraint firstItem="vHw-t1-NU8" firstAttribute="leading" secondItem="0x4-C5-JDz" secondAttribute="leading" constant="8" id="NE0-76-xWo"/>
+                <constraint firstItem="vHw-t1-NU8" firstAttribute="leading" secondItem="0x4-C5-JDz" secondAttribute="leading" constant="26" id="NE0-76-xWo"/>
+                <constraint firstAttribute="trailing" secondItem="NeC-xb-HWo" secondAttribute="trailing" constant="42" id="Oza-uc-bMb"/>
                 <constraint firstItem="vHw-t1-NU8" firstAttribute="top" secondItem="0x4-C5-JDz" secondAttribute="top" constant="8" id="V4z-PT-ipb"/>
+                <constraint firstItem="NeC-xb-HWo" firstAttribute="top" secondItem="0x4-C5-JDz" secondAttribute="top" constant="7" id="aeO-Ur-y7Z"/>
                 <constraint firstAttribute="trailing" secondItem="Dfq-G1-nzE" secondAttribute="trailing" constant="16" id="eFP-QW-Ciy"/>
                 <constraint firstAttribute="bottom" secondItem="vHw-t1-NU8" secondAttribute="bottom" constant="8" id="fYP-50-KwF"/>
-                <constraint firstItem="Dfq-G1-nzE" firstAttribute="top" secondItem="0x4-C5-JDz" secondAttribute="top" constant="18" id="sbJ-VI-tIz"/>
-                <constraint firstAttribute="bottom" secondItem="Dfq-G1-nzE" secondAttribute="bottom" constant="20.5" id="w8K-uR-5iJ"/>
+                <constraint firstItem="Dfq-G1-nzE" firstAttribute="top" secondItem="0x4-C5-JDz" secondAttribute="top" constant="29" id="sbJ-VI-tIz"/>
+                <constraint firstAttribute="bottom" secondItem="Dfq-G1-nzE" secondAttribute="bottom" constant="13.5" id="w8K-uR-5iJ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="IuR-AW-MQv"/>
             <size key="customSize" width="428" height="137"/>
             <connections>
                 <outlet property="colour" destination="p74-WS-dcA" id="FOc-5x-go3"/>
+                <outlet property="deleteProduct" destination="NeC-xb-HWo" id="lgb-7W-J84"/>
                 <outlet property="imageProduct" destination="vHw-t1-NU8" id="wUi-iD-25R"/>
                 <outlet property="nameProduct" destination="HEI-ie-bTb" id="GBW-8G-379"/>
+                <outlet property="price" destination="nF2-cD-hJe" id="144-GA-E99"/>
                 <outlet property="quantity" destination="aym-je-LGV" id="FLw-N3-82K"/>
                 <outlet property="size" destination="3Ly-K2-yAj" id="3d1-Qs-Bzz"/>
             </connections>
             <point key="canvasLocation" x="-115" y="26.5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="delete" width="99" height="99"/>
+    </resources>
 </document>

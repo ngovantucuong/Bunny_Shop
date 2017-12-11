@@ -43,6 +43,8 @@ class DetailCategoryProductController: UIViewController {
     }()
  
     @objc func handleSwipeImage() {
+        imageGalleryLaucher.dismissButton.alpha = 1
+        imageGalleryLaucher.pageController.alpha = 1
         imageGalleryLaucher.showImageGalleryView()
     }
 

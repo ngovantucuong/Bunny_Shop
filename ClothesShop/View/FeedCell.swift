@@ -34,7 +34,6 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
     override func setupViews() {
         addSubview(collectionview)
         
-        collectionview.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellID)
         collectionview.alwaysBounceVertical = true
         collectionview.contentInset = UIEdgeInsetsMake(80, 0, 0, 0)
         collectionview.register(ProductCell.self, forCellWithReuseIdentifier: cellID)

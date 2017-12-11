@@ -33,7 +33,7 @@ class MenuBarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource,
         addSubview(collectionView)
         
         addConstrantWithFormat(format: "H:|[v0]|", views: collectionView)
-        addConstrantWithFormat(format: "V:|-8-[v0]|", views: collectionView)
+        addConstrantWithFormat(format: "V:|[v0]-8-|", views: collectionView)
         
         setupHorizontalBar()
     }
@@ -52,7 +52,7 @@ class MenuBarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource,
         horizontalBarLeftAnchorConstraint = NSLayoutConstraint(item: horizontalBarView, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: paddingLeft)
         addConstraint(horizontalBarLeftAnchorConstraint!)
        
-        horizontalBarView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        horizontalBarView.topAnchor.constraint(equalTo: self.collectionView.bottomAnchor).isActive = true
         horizontalBarView.heightAnchor.constraint(equalToConstant: 8).isActive = true
         horizontalBarView.widthAnchor.constraint(equalToConstant: 8).isActive = true
     }
@@ -109,6 +109,6 @@ class MenuCell: BaseCell {
         addSubview(nameCategory)
         
         addConstrantWithFormat(format: "H:|[v0]|", views: nameCategory)
-        addConstrantWithFormat(format: "V:[v0]", views: nameCategory)
+        addConstrantWithFormat(format: "V:|-8-[v0]|", views: nameCategory)
     }
 }

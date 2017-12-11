@@ -83,15 +83,17 @@ class AddCartController: UIViewController {
     @objc func handleAddToCart() {
         dictionaryProduct["imageProduct"] = self.product?.image
         dictionaryProduct["nameProduct"] = self.product?.nameProduct
-        dictionaryProduct["price"] = self.price
+        dictionaryProduct["price"] = self.price.text
         dictionaryProduct["size"] = self.sizeProduct
         dictionaryProduct["colour"] = self.colourProduct
         dictionaryProduct["ref"] = refProduct.text
         
-        CoreData.shareCoreData.saveProduct(dictionaryProduct:  dictionaryProduct, context:  AppDelegate.managerObjectContext!)
+        CoreData.shareCoreData.saveProduct(dictionaryProduct:  dictionaryProduct)
+        
+        self.view.removeFromSuperview()
     }
 
     @IBAction func handleDismiss(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        self.view.removeFromSuperview()
     }
 }

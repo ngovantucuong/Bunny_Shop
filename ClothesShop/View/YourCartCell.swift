@@ -14,6 +14,9 @@ class YourCartCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelega
     let cellID = "cellID"
     var productCart: [ProductCart]?
     var qualtityProduct: [NSFetchRequestResult]?
+    var nameProduct: String?
+    var cartViewCell: CartViewCell?
+    var numberProductDelete: Int?
     
     lazy var collectionview: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -27,21 +30,24 @@ class YourCartCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelega
     
     
     override func setupViews() {
-        fetchProductCart()
+//        fetchProductCart()
         addSubview(collectionview)
         
-        collectionview.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellID)
         collectionview.alwaysBounceVertical = true
-        collectionview.contentInset = UIEdgeInsetsMake(80, 0, 0, 0)
-        collectionview.register(CartViewCell.self, forCellWithReuseIdentifier: cellID)
+        collectionview.contentInset = UIEdgeInsetsMake(0, 8, 0, 8)
+        
+        let uiNib = UINib(nibName: "ProductCartView", bundle: nil)
+        collectionview.register(uiNib, forCellWithReuseIdentifier: cellID)
+        collectionview.contentInset = UIEdgeInsetsMake(0, 16, 0, 16)
         
         addConstrantWithFormat(format: "H:|[v0]|", views: collectionview)
         addConstrantWithFormat(format: "V:|[v0]|", views: collectionview)
     }
     
-    func fetchProductCart() {
-        productCart = CoreData.shareCoreData.fetchFriends()
-    }
+//    // get data from core data
+//    func fetchProductCart() {
+//        productCart = CoreData.shareCoreData.fetchProducts()
+//    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return productCart?.count ?? 0
@@ -50,9 +56,8 @@ class YourCartCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionview.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! CartViewCell
         let product = productCart![indexPath.item]
-        qualtityProduct = CoreData.shareCoreData.getProductWithName(nameProduct: product.nameProduct!)
         cell.cartProduct = product
-        cell.qualtityProduct = qualtityProduct?.count
+        self.cartViewCell = cell
         
         return cell
     }
@@ -63,7 +68,20 @@ class YourCartCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelega
         return CGSize(width: width, height: height)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        cartViewCell?.deleteProduct.isHidden = false
+        nameProduct = productCart![indexPath.item].nameProduct
+        cartViewCell?.deleteProduct.addTarget(self, action: #selector(handleDeleteProduct), for: .touchUpInside)
+        numberProductDelete = indexPath.item
+    }
+    
+    @objc func handleDeleteProduct() {
+        CoreData.shareCoreData.deleteProductWithName(nameProduct: nameProduct!)
+        productCart?.remove(at: numberProductDelete!)
+        self.collectionview.reloadData()
     }
 }

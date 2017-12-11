@@ -2,7 +2,7 @@
 //  ProductCart+CoreDataClass.swift
 //  
 //
-//  Created by ngovantucuong on 12/9/17.
+//  Created by ngovantucuong on 12/10/17.
 //
 //
 

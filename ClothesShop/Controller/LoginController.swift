@@ -33,9 +33,8 @@ class LoginController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegat
         SignIn.addTarget(self, action: #selector(handleSignInGmail), for: .touchUpInside)
         SignInFace.addTarget(self, action: #selector(handleSignInFacebook), for: .touchUpInside)
         
-        let image = UIImage(named: "warehouse")?.withRenderingMode(.alwaysOriginal).resizeImage(targetSize: CGSize(width: 30, height: 30))
-        self.tabBarController?.tabBar.items![0].image = image
-        self.tabBarController?.tabBar.items![0].image?.resizableImage(withCapInsets: UIEdgeInsetsMake(16, 0, 8, 0))
+        // set image for tabBarItem
+        setImageForTabBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +48,20 @@ class LoginController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegat
         
         self.navigationController?.isNavigationBarHidden = false
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    func setImageForTabBar() {
+        let imageHome = UIImage(named: "home")?.withRenderingMode(.alwaysOriginal).resizeImage(targetSize: CGSize(width: 50, height: 50))
+        self.tabBarController?.tabBar.items![0].image = imageHome
+        
+        let imageCart = UIImage(named: "shop")?.withRenderingMode(.alwaysOriginal).resizeImage(targetSize: CGSize(width: 30, height: 30))
+        self.tabBarController?.tabBar.items![1].image = imageCart
+        
+        let imageMap = UIImage(named: "map")?.withRenderingMode(.alwaysOriginal).resizeImage(targetSize: CGSize(width: 30, height: 30))
+        self.tabBarController?.tabBar.items![2].image = imageMap
+        
+        let imageProfile = UIImage(named: "profile")?.withRenderingMode(.alwaysOriginal).resizeImage(targetSize: CGSize(width: 30, height: 30))
+        self.tabBarController?.tabBar.items![3].image = imageProfile
     }
 
     private func setupLayout() {

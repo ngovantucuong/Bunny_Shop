@@ -600,7 +600,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="T6m-bC-bAk">
-                                <rect key="frame" x="0.0" y="122" width="375" height="496"/>
+                                <rect key="frame" x="0.0" y="114" width="375" height="504"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IjK-TU-Gqq">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -689,7 +689,7 @@
                         <constraints>
                             <constraint firstItem="T6m-bC-bAk" firstAttribute="leading" secondItem="MsM-Pv-Pf6" secondAttribute="leading" id="1Nd-6W-W1l"/>
                             <constraint firstItem="MsM-Pv-Pf6" firstAttribute="trailing" secondItem="T6m-bC-bAk" secondAttribute="trailing" id="6mF-eC-SpT"/>
-                            <constraint firstItem="T6m-bC-bAk" firstAttribute="top" secondItem="thm-Sn-AIc" secondAttribute="bottom" constant="8" id="8pb-vJ-doU"/>
+                            <constraint firstItem="T6m-bC-bAk" firstAttribute="top" secondItem="thm-Sn-AIc" secondAttribute="bottom" id="8pb-vJ-doU"/>
                             <constraint firstItem="9Eu-nC-je6" firstAttribute="trailing" secondItem="MsM-Pv-Pf6" secondAttribute="trailing" id="A4K-Xa-x25"/>
                             <constraint firstItem="thm-Sn-AIc" firstAttribute="trailing" secondItem="MsM-Pv-Pf6" secondAttribute="trailing" id="AQM-9t-oaQ"/>
                             <constraint firstItem="thm-Sn-AIc" firstAttribute="leading" secondItem="MsM-Pv-Pf6" secondAttribute="leading" id="MOg-Fq-rCo"/>
@@ -707,6 +707,7 @@
                         <outlet property="nextButton" destination="nDl-1X-zYY" id="cm7-nf-PIR"/>
                         <outlet property="numberProduct" destination="y1h-AU-yhu" id="3y8-81-5fv"/>
                         <outlet property="totalsPrice" destination="kxQ-FY-TNN" id="ck7-et-r3Q"/>
+                        <outlet property="viewInforPrice" destination="9Eu-nC-je6" id="Wft-iO-63c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qJx-Qd-9kQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

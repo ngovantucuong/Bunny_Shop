@@ -18,8 +18,8 @@ class ShipingCell: UICollectionViewCell {
     
     var cartController: CartController? {
         didSet {
-            let price = (cartController?.totalPrice)! + 5.0
-            cartController?.totalsPrice.text = String(format: "%0.2f", price)
+            cartController?.totalPrice = (cartController?.totalPrice)! + 5.0
+            cartController?.totalsPrice.text = String(format: "%0.2f", (cartController?.totalPrice)!)
         }
     }
     
@@ -30,9 +30,9 @@ class ShipingCell: UICollectionViewCell {
     }
     
     private func setupLayout() {
-        nameTextField.setBottomLine(borderColor: UIColor.white, textColor: UIColor.black, placeHolderColor: UIColor.gray, placeHolder: "Enter first name")
-        lastNameTextField.setBottomLine(borderColor: UIColor.white, textColor: UIColor.black, placeHolderColor: UIColor.gray, placeHolder: "Enter last name")
-        addressTextField.setBottomLine(borderColor: UIColor.white, textColor: UIColor.black, placeHolderColor: UIColor.gray, placeHolder: "Enter address of you")
+        nameTextField.setBottomLine(borderColor: UIColor.black, textColor: UIColor.black, placeHolderColor: UIColor.gray, placeHolder: "Enter first name")
+        lastNameTextField.setBottomLine(borderColor: UIColor.black, textColor: UIColor.black, placeHolderColor: UIColor.gray, placeHolder: "Enter last name")
+        addressTextField.setBottomLine(borderColor: UIColor.black, textColor: UIColor.black, placeHolderColor: UIColor.gray, placeHolder: "Enter address of you")
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         

@@ -16,6 +16,7 @@ class CartController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var numberProduct: UILabel!
     @IBOutlet weak var totalsPrice: UILabel!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var viewInforPrice: UIView!
     
     let cellID = "cellID"
     let yourCartID = "yourCartID"
@@ -26,6 +27,8 @@ class CartController: UIViewController, UICollectionViewDataSource, UICollection
     var countCategory: CGFloat?
     var totalPrice: Float = 0.0
     var productCart: [ProductCart]?
+    weak var yourCartCell: YourCartCell?
+    var item = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +38,7 @@ class CartController: UIViewController, UICollectionViewDataSource, UICollection
         collectionView.delegate = self
         
         collectionView.alwaysBounceHorizontal = true
-        collectionView.contentInset = UIEdgeInsetsMake(100, 0, 0, 0)
+//        collectionView.contentInset = UIEdgeInsetsMake(100, 0, 0, 0)
         collectionView.isPagingEnabled = true
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellID)
         collectionView.register(YourCartCell.self, forCellWithReuseIdentifier: yourCartID)
@@ -44,22 +47,30 @@ class CartController: UIViewController, UICollectionViewDataSource, UICollection
         collectionView.register(uiNibShip, forCellWithReuseIdentifier: shippingID)
         
         let uiNibPayment = UINib(nibName: "PaymentView", bundle: nil)
-        collectionView.register(uiNibPayment, forCellWithReuseIdentifier: cellID)
+        collectionView.register(uiNibPayment, forCellWithReuseIdentifier: paymentID)
         
         menuBar.cartController = self
         setupBarItem()
-        
         refreshData()
+        
+        nextButton.addTarget(self, action: #selector(handleTranferView), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         refreshData()
     }
     
+    @objc func handleTranferView() {
+        item = item + 1
+        let indexPath = NSIndexPath(item: item, section: 0) as IndexPath
+        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
+    }
+    
     func refreshData() {
         do {
             try fetchedResultsController.performFetch()
             
+            yourCartCell?.collectionview.reloadData()
             fetchProductCart()
             showInforYourCart()
             calculateProductPrice(productCart: productCart!)
@@ -164,16 +175,19 @@ class CartController: UIViewController, UICollectionViewDataSource, UICollection
         
         if indexPath.item == 0 {
             let yourCartCell = collectionView.dequeueReusableCell(withReuseIdentifier: yourCartID, for: indexPath) as! YourCartCell
-            yourCartCell.productCart = productCart
-            return yourCartCell
+                self.yourCartCell = yourCartCell
+                yourCartCell.productCart = productCart
+            
+                return yourCartCell
         } else if indexPath.item == 1 {
             let shippingCell = collectionView.dequeueReusableCell(withReuseIdentifier: shippingID, for: indexPath) as! ShipingCell
                 shippingCell.cartController = self
-            collectionView.frame = CGRect(x: 0, y: 0, width: 369, height: 453)
             
             return shippingCell
         } else {
-            let paymentCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
+            let paymentCell = collectionView.dequeueReusableCell(withReuseIdentifier: paymentID, for: indexPath) as! PaymentCell
+            paymentCell.productCart = productCart
+            
             return paymentCell
         }
        
@@ -181,11 +195,14 @@ class CartController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        if indexPath.item == 1 {
+//            return CGSize(width: view.frame.width, height: 453)
+//        }
         return CGSize(width: view.frame.width, height: view.frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 0.0
     }
 
 

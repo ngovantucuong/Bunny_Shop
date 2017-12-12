@@ -34,11 +34,11 @@ class YourCartCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelega
         addSubview(collectionview)
         
         collectionview.alwaysBounceVertical = true
-        collectionview.contentInset = UIEdgeInsetsMake(0, 8, 0, 8)
+//        collectionview.contentInset = UIEdgeInsetsMake(0, 8, 0, 8)
         
         let uiNib = UINib(nibName: "ProductCartView", bundle: nil)
         collectionview.register(uiNib, forCellWithReuseIdentifier: cellID)
-        collectionview.contentInset = UIEdgeInsetsMake(0, 16, 0, 16)
+//        collectionview.contentInset = UIEdgeInsetsMake(0, 16, 0, 16)
         
         addConstrantWithFormat(format: "H:|[v0]|", views: collectionview)
         addConstrantWithFormat(format: "V:|[v0]|", views: collectionview)

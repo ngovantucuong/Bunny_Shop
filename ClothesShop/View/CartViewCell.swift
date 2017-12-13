@@ -18,6 +18,7 @@ class CartViewCell: UICollectionViewCell {
     @IBOutlet weak var colour: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var deleteProduct: UIButton!
+    var yourCartCell: YourCartCell?
     
     var cartProduct: ProductCart? {
         didSet {
@@ -34,7 +35,12 @@ class CartViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        deleteProduct.isHidden = true
+//        deleteProduct.isHidden = true
+        deleteProduct.addTarget(self, action: #selector(handleDeleteProduct), for: .touchUpInside)
+    }
+    
+    @objc func handleDeleteProduct() {
+       yourCartCell?.handleDeleteProduct()
     }
     
 }

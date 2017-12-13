@@ -18,4 +18,10 @@ pod ‘GoogleSignIn’
 pod ‘Bolts’
 pod ‘FBSDKCoreKit’
 pod ‘FBSDKLoginKit’
+
+	#Pod for stripe
+pod 'Stripe'
+pod 'AFNetworking', '~> 2.5.4'
+
+
 end

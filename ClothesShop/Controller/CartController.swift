@@ -18,6 +18,8 @@ class CartController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var viewInforPrice: UIView!
     
+    @IBOutlet weak var heightConstraintViewPriceInfor: NSLayoutConstraint!
+    
     let cellID = "cellID"
     let yourCartID = "yourCartID"
     let shippingID = "shippingID"
@@ -27,7 +29,7 @@ class CartController: UIViewController, UICollectionViewDataSource, UICollection
     var countCategory: CGFloat?
     var totalPrice: Float = 0.0
     var productCart: [ProductCart]?
-    weak var yourCartCell: YourCartCell?
+//    weak var yourCartCell: YourCartCell?
     var item = 0
     
     override func viewDidLoad() {
@@ -38,7 +40,8 @@ class CartController: UIViewController, UICollectionViewDataSource, UICollection
         collectionView.delegate = self
         
         collectionView.alwaysBounceHorizontal = true
-//        collectionView.contentInset = UIEdgeInsetsMake(100, 0, 0, 0)
+        collectionView.backgroundColor = UIColor(r: 245, g: 249, b: 251)
+        collectionView.contentInset = UIEdgeInsetsMake(150, 0, 0, 0)
         collectionView.isPagingEnabled = true
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellID)
         collectionView.register(YourCartCell.self, forCellWithReuseIdentifier: yourCartID)
@@ -51,65 +54,26 @@ class CartController: UIViewController, UICollectionViewDataSource, UICollection
         
         menuBar.cartController = self
         setupBarItem()
-        refreshData()
         
         nextButton.addTarget(self, action: #selector(handleTranferView), for: .touchUpInside)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        refreshData()
+        
+        fetchProductCart()
+        showInforYourCart(numberProduct: productCart!.count)
+        calculateProductPrice(productCart: productCart!)
     }
     
     @objc func handleTranferView() {
-        item = item + 1
-        let indexPath = NSIndexPath(item: item, section: 0) as IndexPath
-        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
-    }
-    
-    func refreshData() {
-        do {
-            try fetchedResultsController.performFetch()
+        if item < 3 {
+            item = item + 1
+            let indexPath = NSIndexPath(item: item, section: 0) as IndexPath
+            self.collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+            self.menuBar.collectionView.selectItem(at: indexPath as IndexPath, animated: true, scrollPosition: .centeredVertically)
             
-            yourCartCell?.collectionview.reloadData()
-            fetchProductCart()
-            showInforYourCart()
-            calculateProductPrice(productCart: productCart!)
-        } catch let error {
-            print(error.localizedDescription)
+            if item == 2 {
+                self.heightConstraintViewPriceInfor.constant = 0
+            }
         }
     }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        switch type {
-        case .insert:
-            refreshData()
-        case .delete:
-            refreshData()
-        default:
-            break
-        }
-    }
-    
-    // get data from core data
-    func fetchProductCart() {
-        productCart =  fetchedResultsController.fetchedObjects
-    }
-    
-    lazy var fetchedResultsController: NSFetchedResultsController<ProductCart> = {
-        // Create Fetch Request
-        let fetchRequest: NSFetchRequest<ProductCart> = ProductCart.fetchRequest()
-        
-        // Configure Fetch Request
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "price", ascending: true)]
-        
-        // Create Fetched Results Controller
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: AppDelegate.managerObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
-        
-        // Configure Fetched Results Controller
-        fetchedResultsController.delegate = self
-        
-        return fetchedResultsController
-    }()
     
     func setupBarItem() {
         menuBar.category = categoriesCart
@@ -130,6 +94,11 @@ class CartController: UIViewController, UICollectionViewDataSource, UICollection
         return number!.floatValue
     }
     
+    // get data from core data
+    func fetchProductCart() {
+        productCart =  CoreData.shareCoreData.fetchProducts()
+    }
+    
     // caculation tototal price all product
     func calculateProductPrice(productCart: [ProductCart]) {
         for product in productCart {
@@ -142,8 +111,7 @@ class CartController: UIViewController, UICollectionViewDataSource, UICollection
         totalsPrice.text = total
     }
     
-    func showInforYourCart() {
-        let numberProduct = productCart?.count ?? 0
+    func showInforYourCart(numberProduct: Int) {
         self.numberProduct.text = String(describing: numberProduct)
     }
     
@@ -171,33 +139,26 @@ class CartController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
-        
         if indexPath.item == 0 {
             let yourCartCell = collectionView.dequeueReusableCell(withReuseIdentifier: yourCartID, for: indexPath) as! YourCartCell
-                self.yourCartCell = yourCartCell
-                yourCartCell.productCart = productCart
+//                self.yourCartCell = yourCartCell
+                yourCartCell.cartController = self
             
                 return yourCartCell
         } else if indexPath.item == 1 {
             let shippingCell = collectionView.dequeueReusableCell(withReuseIdentifier: shippingID, for: indexPath) as! ShipingCell
                 shippingCell.cartController = self
+                shippingCell.bottomConstraintView.constant = 232
             
             return shippingCell
         } else {
             let paymentCell = collectionView.dequeueReusableCell(withReuseIdentifier: paymentID, for: indexPath) as! PaymentCell
-            paymentCell.productCart = productCart
             
             return paymentCell
         }
-       
-//        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        if indexPath.item == 1 {
-//            return CGSize(width: view.frame.width, height: 453)
-//        }
         return CGSize(width: view.frame.width, height: view.frame.height)
     }
     

@@ -11,6 +11,7 @@ import CoreData
 import Firebase
 import GoogleSignIn
 import FBSDKCoreKit
+import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -32,6 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         UITabBar.appearance().tintColor = UIColor.black
         // context for Core data
         AppDelegate.managerObjectContext = persistentContainer.viewContext
+        
+        // Stripe Configuration
+        Stripe.setDefaultPublishableKey("sk_test_XbKli0lMlEtyH6t94jEqt0Nw")
  
         return true
     }

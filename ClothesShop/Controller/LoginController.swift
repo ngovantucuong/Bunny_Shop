@@ -11,7 +11,7 @@ import GoogleSignIn
 import Firebase
 import FBSDKLoginKit
 
-class LoginController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
+class LoginController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate, UITabBarDelegate {
     
     @IBOutlet weak var logoShop: UIImageViewX!
     @IBOutlet weak var email: UITextFieldX!
@@ -24,6 +24,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        self.tabBarController?.tabBar.delegate = self
         setupLayout()
         
         GIDSignIn.sharedInstance().uiDelegate = self
@@ -62,6 +63,13 @@ class LoginController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegat
         
         let imageProfile = UIImage(named: "profile")?.withRenderingMode(.alwaysOriginal).resizeImage(targetSize: CGSize(width: 30, height: 30))
         self.tabBarController?.tabBar.items![3].image = imageProfile
+    }
+    
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if item.tag == 1 {
+            let homeController = HomeController()
+            self.present(homeController, animated: true, completion: nil)
+        }
     }
 
     private func setupLayout() {

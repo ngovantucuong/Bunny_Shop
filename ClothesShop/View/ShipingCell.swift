@@ -16,10 +16,12 @@ class ShipingCell: UICollectionViewCell {
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     
+    @IBOutlet weak var bottomConstraintView: NSLayoutConstraint!
+    
     var cartController: CartController? {
         didSet {
-            cartController?.totalPrice = (cartController?.totalPrice)! + 5.0
-            cartController?.totalsPrice.text = String(format: "%0.2f", (cartController?.totalPrice)!)
+            let price = (cartController?.totalPrice)! + 5.0
+            cartController?.totalsPrice.text = String(format: "%0.2f", price)
         }
     }
     

@@ -115,7 +115,7 @@
                         </subviews>
                     </stackView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NeC-xb-HWo">
-                        <rect key="frame" x="366" y="7" width="20" height="20"/>
+                        <rect key="frame" x="367" y="7" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="fDF-1h-bom"/>
                             <constraint firstAttribute="height" constant="20" id="k8L-EC-mJ0"/>
@@ -127,7 +127,7 @@
             <constraints>
                 <constraint firstItem="Dfq-G1-nzE" firstAttribute="leading" secondItem="vHw-t1-NU8" secondAttribute="trailing" constant="12" id="6ki-Y3-pRo"/>
                 <constraint firstItem="vHw-t1-NU8" firstAttribute="leading" secondItem="0x4-C5-JDz" secondAttribute="leading" constant="7" id="NE0-76-xWo"/>
-                <constraint firstAttribute="trailing" secondItem="NeC-xb-HWo" secondAttribute="trailing" constant="42" id="Oza-uc-bMb"/>
+                <constraint firstAttribute="trailing" secondItem="NeC-xb-HWo" secondAttribute="trailing" constant="41" id="Oza-uc-bMb"/>
                 <constraint firstItem="vHw-t1-NU8" firstAttribute="top" secondItem="0x4-C5-JDz" secondAttribute="top" constant="8" id="V4z-PT-ipb"/>
                 <constraint firstItem="NeC-xb-HWo" firstAttribute="top" secondItem="0x4-C5-JDz" secondAttribute="top" constant="7" id="aeO-Ur-y7Z"/>
                 <constraint firstAttribute="trailing" secondItem="Dfq-G1-nzE" secondAttribute="trailing" constant="16" id="eFP-QW-Ciy"/>

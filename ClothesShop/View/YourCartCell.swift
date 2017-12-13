@@ -9,13 +9,14 @@
 import UIKit
 import CoreData
 
-class YourCartCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class YourCartCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate {
     
     let cellID = "cellID"
     var productCart: [ProductCart]?
     var qualtityProduct: [NSFetchRequestResult]?
     var nameProduct: String?
     var cartViewCell: CartViewCell?
+    var cartController: CartController?
     var numberProductDelete: Int?
     
     lazy var collectionview: UICollectionView = {
@@ -30,24 +31,63 @@ class YourCartCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelega
     
     
     override func setupViews() {
-//        fetchProductCart()
         addSubview(collectionview)
         
         collectionview.alwaysBounceVertical = true
-//        collectionview.contentInset = UIEdgeInsetsMake(0, 8, 0, 8)
         
         let uiNib = UINib(nibName: "ProductCartView", bundle: nil)
         collectionview.register(uiNib, forCellWithReuseIdentifier: cellID)
-//        collectionview.contentInset = UIEdgeInsetsMake(0, 16, 0, 16)
         
         addConstrantWithFormat(format: "H:|[v0]|", views: collectionview)
         addConstrantWithFormat(format: "V:|[v0]|", views: collectionview)
+        refreshData()
     }
     
-//    // get data from core data
-//    func fetchProductCart() {
-//        productCart = CoreData.shareCoreData.fetchProducts()
-//    }
+    func refreshData() {
+        do {
+            try fetchedResultsController.performFetch()
+            
+            fetchProductCart()
+            cartController?.showInforYourCart(numberProduct: (productCart?.count)!)
+            cartController?.calculateProductPrice(productCart: productCart!)
+            
+            self.collectionview.reloadData()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            refreshData()
+        case .delete:
+            refreshData()
+        default:
+            break
+        }
+    }
+    
+    lazy var fetchedResultsController: NSFetchedResultsController<ProductCart> = {
+        // Create Fetch Request
+        let fetchRequest: NSFetchRequest<ProductCart> = ProductCart.fetchRequest()
+        
+        // Configure Fetch Request
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "price", ascending: true)]
+        
+        // Create Fetched Results Controller
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: AppDelegate.managerObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
+        
+        // Configure Fetched Results Controller
+        fetchedResultsController.delegate = self
+        
+        return fetchedResultsController
+    }()
+    
+    // get data from core data
+    func fetchProductCart() {
+        productCart =  fetchedResultsController.fetchedObjects
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return productCart?.count ?? 0
@@ -57,7 +97,7 @@ class YourCartCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionview.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! CartViewCell
         let product = productCart![indexPath.item]
         cell.cartProduct = product
-        self.cartViewCell = cell
+        cell.yourCartCell = self
         
         return cell
     }
@@ -73,15 +113,12 @@ class YourCartCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelega
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        cartViewCell?.deleteProduct.isHidden = false
+//        cartViewCell?.deleteProduct.isHidden = false
         nameProduct = productCart![indexPath.item].nameProduct
-        cartViewCell?.deleteProduct.addTarget(self, action: #selector(handleDeleteProduct), for: .touchUpInside)
         numberProductDelete = indexPath.item
     }
     
-    @objc func handleDeleteProduct() {
+    func handleDeleteProduct() {
         CoreData.shareCoreData.deleteProductWithName(nameProduct: nameProduct!)
-        productCart?.remove(at: numberProductDelete!)
-        self.collectionview.reloadData()
     }
 }

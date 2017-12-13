@@ -161,6 +161,7 @@
             <size key="customSize" width="369" height="453"/>
             <connections>
                 <outlet property="addressTextField" destination="iwU-MS-6jf" id="Hl6-TT-8Ww"/>
+                <outlet property="bottomConstraintView" destination="DoM-rd-QyU" id="aoh-Ag-Vf8"/>
                 <outlet property="imageUser" destination="3Pd-kz-yXx" id="UdZ-mh-f1t"/>
                 <outlet property="lastNameTextField" destination="axJ-US-KqL" id="FfC-kw-j6U"/>
                 <outlet property="nameTextField" destination="C7P-n6-fpc" id="x6i-Te-nli"/>

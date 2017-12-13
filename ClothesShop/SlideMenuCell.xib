@@ -11,27 +11,27 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="85" id="Dq2-VE-3PF" customClass="SlideMenuCell" customModule="ClothesShop" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="390" height="85"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="58" id="Dq2-VE-3PF" customClass="SlideMenuCell" customModule="ClothesShop" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="387" height="58"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dq2-VE-3PF" id="ZYa-i9-dFs">
-                <rect key="frame" x="0.0" y="0.0" width="390" height="84.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="387" height="57.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vm7-CV-fIH">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="85"/>
+                        <rect key="frame" x="0.0" y="0.0" width="387" height="57.5"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home" translatesAutoresizingMaskIntoConstraints="NO" id="W6L-uN-Xz2">
-                                <rect key="frame" x="16" y="22" width="40" height="40"/>
+                                <rect key="frame" x="16" y="9" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="3BT-VI-BYS"/>
-                                    <constraint firstAttribute="width" constant="40" id="L5S-Lp-7e9"/>
+                                    <constraint firstAttribute="height" constant="40" id="LUV-cn-SYR"/>
+                                    <constraint firstAttribute="width" constant="40" id="VDS-pc-1Oi"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VR3-bc-ZbM">
-                                <rect key="frame" x="87" y="34" width="192" height="21"/>
+                                <rect key="frame" x="84" y="19" width="189" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="GeT-Xx-8UC"/>
+                                    <constraint firstAttribute="width" constant="189" id="Ukt-YD-IUi"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -40,11 +40,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="VR3-bc-ZbM" firstAttribute="top" secondItem="Vm7-CV-fIH" secondAttribute="top" constant="34" id="14E-4t-FUk"/>
-                            <constraint firstItem="VR3-bc-ZbM" firstAttribute="leading" secondItem="W6L-uN-Xz2" secondAttribute="trailing" constant="31" id="KBl-dO-uMi"/>
-                            <constraint firstItem="W6L-uN-Xz2" firstAttribute="leading" secondItem="Vm7-CV-fIH" secondAttribute="leading" constant="16" id="Vnr-q2-ckX"/>
-                            <constraint firstItem="W6L-uN-Xz2" firstAttribute="top" secondItem="Vm7-CV-fIH" secondAttribute="top" constant="22" id="ge1-EO-xd1"/>
-                            <constraint firstAttribute="trailing" secondItem="VR3-bc-ZbM" secondAttribute="trailing" constant="111" id="rNP-ky-CLt"/>
+                            <constraint firstItem="VR3-bc-ZbM" firstAttribute="leading" secondItem="W6L-uN-Xz2" secondAttribute="trailing" constant="28" id="3jL-AH-ckd"/>
+                            <constraint firstAttribute="bottom" secondItem="W6L-uN-Xz2" secondAttribute="bottom" constant="8.5" id="6BU-eD-Ob6"/>
+                            <constraint firstItem="W6L-uN-Xz2" firstAttribute="top" secondItem="Vm7-CV-fIH" secondAttribute="top" constant="9" id="N9D-bn-bq1"/>
+                            <constraint firstAttribute="trailing" secondItem="VR3-bc-ZbM" secondAttribute="trailing" constant="114" id="YVS-0B-IJf"/>
+                            <constraint firstItem="VR3-bc-ZbM" firstAttribute="top" secondItem="Vm7-CV-fIH" secondAttribute="top" constant="19" id="afA-Ay-QMZ"/>
+                            <constraint firstAttribute="bottom" secondItem="VR3-bc-ZbM" secondAttribute="bottom" constant="17.5" id="nQL-X8-nGP"/>
+                            <constraint firstItem="W6L-uN-Xz2" firstAttribute="leading" secondItem="Vm7-CV-fIH" secondAttribute="leading" constant="16" id="raY-Zj-acq"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
@@ -57,17 +59,17 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Vm7-CV-fIH" firstAttribute="top" secondItem="ZYa-i9-dFs" secondAttribute="top" id="BEZ-KI-Oc0"/>
-                    <constraint firstAttribute="trailing" secondItem="Vm7-CV-fIH" secondAttribute="trailing" id="eNi-AT-Av9"/>
-                    <constraint firstAttribute="bottom" secondItem="Vm7-CV-fIH" secondAttribute="bottom" id="hhF-2T-WYy"/>
-                    <constraint firstItem="Vm7-CV-fIH" firstAttribute="leading" secondItem="ZYa-i9-dFs" secondAttribute="leading" id="rnV-u0-fTj"/>
+                    <constraint firstItem="Vm7-CV-fIH" firstAttribute="top" secondItem="ZYa-i9-dFs" secondAttribute="top" id="JJm-nd-Gov"/>
+                    <constraint firstAttribute="bottom" secondItem="Vm7-CV-fIH" secondAttribute="bottom" id="Rsa-S8-MqP"/>
+                    <constraint firstItem="Vm7-CV-fIH" firstAttribute="leading" secondItem="ZYa-i9-dFs" secondAttribute="leading" id="VcC-l4-QPM"/>
+                    <constraint firstAttribute="trailing" secondItem="Vm7-CV-fIH" secondAttribute="trailing" id="bdI-n8-Ld8"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="content" destination="VR3-bc-ZbM" id="dnw-Y7-Pza"/>
                 <outlet property="imageIcon" destination="W6L-uN-Xz2" id="4VY-Lx-99h"/>
             </connections>
-            <point key="canvasLocation" x="14" y="-208.5"/>
+            <point key="canvasLocation" x="12.5" y="-207"/>
         </tableViewCell>
     </objects>
     <resources>

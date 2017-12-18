@@ -44,6 +44,8 @@
 		E8917C241FBDC5B600746974 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8917C231FBDC5B600746974 /* Extension.swift */; };
 		E8A66B9D1FDAC72900B7D929 /* DropMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A66B9C1FDAC72900B7D929 /* DropMenuButton.swift */; };
 		E8AF03701FDB5AF8000797EA /* ProductCartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8AF036F1FDB5AF8000797EA /* ProductCartView.xib */; };
+		E8B6FD051FE7A89900F3C023 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B6FD041FE7A89900F3C023 /* MapKit.framework */; };
+		E8B6FD071FE7AB1D00F3C023 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6FD061FE7AB1D00F3C023 /* MapViewController.swift */; };
 		E8BBA3EC1FC990C2002ADD8D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BBA3EB1FC990C2002ADD8D /* User.swift */; };
 		E8BBA3EE1FC9A85E002ADD8D /* slideMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BBA3ED1FC9A85E002ADD8D /* slideMenuItem.swift */; };
 		E8C27ECC1FCA91E7004CC70E /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C27ECB1FCA91E7004CC70E /* MenuBarView.swift */; };
@@ -105,6 +107,8 @@
 		E8917C231FBDC5B600746974 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		E8A66B9C1FDAC72900B7D929 /* DropMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropMenuButton.swift; sourceTree = "<group>"; };
 		E8AF036F1FDB5AF8000797EA /* ProductCartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCartView.xib; sourceTree = "<group>"; };
+		E8B6FD041FE7A89900F3C023 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		E8B6FD061FE7AB1D00F3C023 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E8BBA3EB1FC990C2002ADD8D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E8BBA3ED1FC9A85E002ADD8D /* slideMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = slideMenuItem.swift; sourceTree = "<group>"; };
 		E8C27ECB1FCA91E7004CC70E /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8B6FD051FE7A89900F3C023 /* MapKit.framework in Frameworks */,
 				6940AF9EF95F751F57E33CF8 /* Pods_ClothesShop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +148,7 @@
 		680AA7331174C3BF25ED555B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E8B6FD041FE7A89900F3C023 /* MapKit.framework */,
 				0BF99648C8639E1DEDD6E920 /* Pods_ClothesShop.framework */,
 			);
 			name = Frameworks;
@@ -242,6 +248,7 @@
 				E81C79971FD3D738007E75CB /* ImageGalleryLaucher.swift */,
 				E80F194D1FD6CC6600470368 /* AddCartController.swift */,
 				E8CE320B1FDC03E60024F77C /* CartController.swift */,
+				E8B6FD061FE7AB1D00F3C023 /* MapViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -333,6 +340,9 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
 						};
@@ -469,6 +479,7 @@
 				E8C534371FC03ADD00279145 /* LoginController.swift in Sources */,
 				E8917C1D1FBDC12E00746974 /* UIViewXRadialGradient.swift in Sources */,
 				E8CE320E1FDC08890024F77C /* CartViewCell.swift in Sources */,
+				E8B6FD071FE7AB1D00F3C023 /* MapViewController.swift in Sources */,
 				E8917C1C1FBDC12E00746974 /* UIViewX.swift in Sources */,
 				E8C27ECC1FCA91E7004CC70E /* MenuBarView.swift in Sources */,
 				E80C4B391FCC41F800D4B473 /* ApiService.swift in Sources */,

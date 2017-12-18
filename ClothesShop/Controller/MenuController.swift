@@ -19,7 +19,7 @@ class MenuController: UIViewController, UITableViewDataSource, UITableViewDelega
     let cellID = "cellID"
     
     
-    var itemSlideMenu: [slideMenuItem] = [slideMenuItem(imageIcon: #imageLiteral(resourceName: "warehouse"), content: "Home"), slideMenuItem(imageIcon: #imageLiteral(resourceName: "sale"), content: "Sales"), slideMenuItem(imageIcon: #imageLiteral(resourceName: "shop"), content: "In Store"), slideMenuItem(imageIcon: #imageLiteral(resourceName: "shopping-cart"), content: "My Cart"), slideMenuItem(imageIcon: #imageLiteral(resourceName: "profile"), content: "Profile")]
+    var itemSlideMenu: [slideMenuItem] = [slideMenuItem(imageIcon: #imageLiteral(resourceName: "images"), content: "Home"), slideMenuItem(imageIcon: #imageLiteral(resourceName: "sale"), content: "Sales"), slideMenuItem(imageIcon: #imageLiteral(resourceName: "shop"), content: "In Store"), slideMenuItem(imageIcon: #imageLiteral(resourceName: "shopping-cart"), content: "My Cart"), slideMenuItem(imageIcon: #imageLiteral(resourceName: "profile"), content: "Profile")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +27,7 @@ class MenuController: UIViewController, UITableViewDataSource, UITableViewDelega
         setupLayout()
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorStyle = .none
         
         let uiNib = UINib(nibName: "SlideMenuCell", bundle: nil)
         tableView.register(uiNib, forCellReuseIdentifier: cellID)
@@ -62,6 +63,6 @@ class MenuController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 57.5
+        return 60
     }
 }

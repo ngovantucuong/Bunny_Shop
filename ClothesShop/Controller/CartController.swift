@@ -70,7 +70,7 @@ class CartController: UIViewController, UICollectionViewDataSource, UICollection
             self.menuBar.collectionView.selectItem(at: indexPath as IndexPath, animated: true, scrollPosition: .centeredVertically)
             
             if item == 2 {
-                self.heightConstraintViewPriceInfor.constant = 0
+                self.viewInforPrice.alpha = 0
             }
         }
     }

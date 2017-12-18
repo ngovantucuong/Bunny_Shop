@@ -25,6 +25,7 @@
 #import "STPPaymentConfiguration+Private.h"
 #import "STPPhoneNumberValidator.h"
 #import "STPPaymentCardTextFieldCell.h"
+#import "STPPromise.h"
 #import "STPSectionHeaderView.h"
 #import "STPToken.h"
 #import "STPWeakStrongMacros.h"
@@ -144,8 +145,11 @@ typedef NS_ENUM(NSUInteger, STPPaymentCardSection) {
     }
     [addressHeaderView.button addTarget:self action:@selector(useShippingAddress:)
                        forControlEvents:UIControlEventTouchUpInside];
-    BOOL needsAddress = self.configuration.requiredBillingAddressFields != STPBillingAddressFieldsNone && !self.addressViewModel.isValid;
-    BOOL buttonVisible = (needsAddress && self.shippingAddress != nil && !self.hasUsedShippingAddress);
+    STPBillingAddressFields requiredFields = self.configuration.requiredBillingAddressFields;
+    BOOL needsAddress = requiredFields != STPBillingAddressFieldsNone && !self.addressViewModel.isValid;
+    BOOL buttonVisible = (needsAddress &&
+                          [self.shippingAddress containsContentForBillingAddressFields:requiredFields]
+                          && !self.hasUsedShippingAddress);
     addressHeaderView.buttonHidden = !buttonVisible;
     [addressHeaderView setNeedsLayout];
     _addressHeaderView = addressHeaderView;
@@ -160,6 +164,17 @@ typedef NS_ENUM(NSUInteger, STPPaymentCardSection) {
     [self setUpCardScanningIfAvailable];
 
     [[STPAnalyticsClient sharedClient] clearAdditionalInfo];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+
+    // Resetting it re-calculates the size based on new view width
+    // UITableView requires us to call setter again to actually pick up frame
+    // change on footers
+    if (self.tableView.tableFooterView) {
+        self.customFooterView = self.tableView.tableFooterView;
+    }
 }
 
 - (void)setUpCardScanningIfAvailable {
@@ -299,6 +314,16 @@ typedef NS_ENUM(NSUInteger, STPPaymentCardSection) {
     self.stp_navigationItemProxy.rightBarButtonItem.enabled = (self.paymentCell.paymentField.isValid
                                                                && self.addressViewModel.isValid
                                                                );
+}
+
+- (void)setCustomFooterView:(UIView *)footerView {
+    _customFooterView = footerView;
+    [self.stp_willAppearPromise voidOnSuccess:^{
+        CGSize size = [footerView sizeThatFits:CGSizeMake(self.view.bounds.size.width, CGFLOAT_MAX)];
+        footerView.frame = CGRectMake(0, 0, size.width, size.height);
+
+        self.tableView.tableFooterView = footerView;
+    }];
 }
 
 #pragma mark - STPPaymentCardTextField

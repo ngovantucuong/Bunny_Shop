@@ -152,7 +152,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegat
                     }
                     
                     if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeController") {
-                        UIApplication.shared.keyWindow?.rootViewController = viewController
+                        self.navigationController?.pushViewController(viewController, animated: true)
                         self.dismiss(animated: true, completion: nil)
                     }
                 })

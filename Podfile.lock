@@ -91,7 +91,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - Stripe (11.3.0)
+  - Stripe (11.5.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.4)
@@ -123,7 +123,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
   leveldb-library: 10fb39c39e243db4af1828441162405bbcec1404
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  Stripe: 3c86dc18af21e59dd559aa15e83cb501248f9903
+  Stripe: 10761682d20dc491c52287393c800db056c9748d
 
 PODFILE CHECKSUM: 7a7b4b400346f9c5c037744fd1db612117beaa20
 

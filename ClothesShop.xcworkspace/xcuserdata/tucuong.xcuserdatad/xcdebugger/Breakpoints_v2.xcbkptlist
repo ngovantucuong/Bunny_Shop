@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ClothesShop/Controller/LoginController.swift"
-            timestampString = "534866662.51199"
+            timestampString = "535117857.813032"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "69"
@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ClothesShop/Controller/CartController.swift"
-            timestampString = "534866662.512213"
+            filePath = "ClothesShop/View/PaymentCell.swift"
+            timestampString = "535264475.907543"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "handleTranferView()"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "handlePayment()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

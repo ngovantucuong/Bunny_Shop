@@ -65,9 +65,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                     databaseRef.child("user-profiles").child(uid).child("email").setValue(user?.email)
                 }
                 
-//                let viewController = HomeController()
-//                self.window?.rootViewController = viewController
-                self.window?.rootViewController?.performSegue(withIdentifier: "tranferHome", sender: nil)
+                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                let viewController = storyBoard.instantiateViewController(withIdentifier: "HomeController") as? HomeController
+                self.window?.rootViewController = viewController
             })
         }
     }

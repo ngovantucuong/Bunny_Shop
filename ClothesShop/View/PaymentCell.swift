@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import Stripe
-import Stripe.STPCard
+import AFNetworking
 
 
 class PaymentCell: UICollectionViewCell, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -72,29 +72,78 @@ class PaymentCell: UICollectionViewCell, UICollectionViewDelegate,UICollectionVi
     
     @objc func handlePayment() {
         // Initiate the card
-//        var stripCard = STPCard()
-//
-//        // Split the expiration date to extract Month & Year
-//        if self.expireDateTextField.text?.isEmpty == false {
-//            let expirationDate = self.expireDateTextField.text.componentsSeparatedByString("/")
-//            let expMonth = UInt(expirationDate[0].toInt()!)
-//            let expYear = UInt(expirationDate[1].toInt()!)
-//
-//            // Send the card info to Strip to get the token
-//            stripCard.number = self.numberVisaTextField.text
-//            stripCard.cvc = self.cvcTextField.text
-//            stripCard.expMonth = expMonth
-//            stripCard.expYear = expYear
+        let stripCard = STPCardParams()
+        
+        // Split the expiration date to extract Month & Year
+        if self.expireDateTextField.text?.isEmpty == false {
+            let expirationDate = self.expireDateTextField.text?.components(separatedBy: "/")
+            let expMonth = UInt(expirationDate![0])
+            let expYear = UInt(expirationDate![1])
+
+            // Send the card info to Strip to get the token
+            stripCard.number = self.numberVisaTextField.text
+            stripCard.cvc = self.cvcTextField.text
+            stripCard.expMonth = expMonth!
+            stripCard.expYear = expYear!
+        }
+        
+        STPAPIClient.shared().createToken(withCard: stripCard) { (token: STPToken?, error: Error?) in
+            guard let token = token, error == nil else {
+                // Present error to user...
+                return
+            }
+            
+            if error != nil {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            self.postStripeToken(token: token)
+        }
+        
     }
     
-//    var cartController: CartController? {
-//        didSet {
-//            let price = (cartController?.totalPrice)! + 5.0
-//            let stringTotalPrice = String(format: "%0.2f", price)
-//            let total = "$\(stringTotalPrice)"
-//            numberItem.text = total
-//        }
-//    }
+    func postStripeToken(token: STPToken) {
+        
+        let URL = "http://localhost/donate/payment.php"
+        let params = ["stripeToken": token.tokenId,
+                      "amount": Int(self.totalsPrice.text!) ?? 0,
+                      "currency": "usd",
+                      "description": "ngovantucuong@gmail.com"] as [String : Any]
+        let manager = AFHTTPRequestOperationManager()
+        manager.post(URL, parameters: params, success: { (operation, responseObject) -> Void in
+            
+            if let response = responseObject as? [String: String] {
+                self.handleNotification(title: response["status"]!, message: response["message"]!)
+            }
+            
+        }) { (operation, error) -> Void in
+            print(error!.localizedDescription)
+        }
+    }
+    
+    func handleError(error: NSError) {
+        let alertController = UIAlertController(title: "Please Try Again", message: error.localizedDescription, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(action)
+        UIApplication.shared.keyWindow?.rootViewController = alertController
+    }
+    
+    func handleNotification(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(action)
+        UIApplication.shared.keyWindow?.rootViewController = alertController
+    }
+    
+    var cartController: CartController? {
+        didSet {
+            let price = (cartController?.totalPrice)! + 5.0
+            let stringTotalPrice = String(format: "%0.2f", price)
+            let total = "$\(stringTotalPrice)"
+            numberItem.text = total
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return productCart?.count ?? 0

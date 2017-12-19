@@ -161,6 +161,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegat
     }
     
     @objc func handleSignInGmail() {
+        AppDelegate.navigationController = self.navigationController
         GIDSignIn.sharedInstance().signIn()
     }
 

@@ -12,8 +12,10 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
     
     let cellID = "cellID"
     var productArray: [Product]?
+    var productFilterArray: [Product]?
     var categoryController: CategoryProductController?
     var navigationController: UINavigationController?
+    var searchActive : Bool = false
     
     lazy var collectionview: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -52,13 +54,22 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return productArray?.count ?? 0
+        if let count = productFilterArray?.count {
+            return count != 0 ? count : productArray!.count
+        } else {
+            return productArray?.count ?? 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionview.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ProductCell
-        let product = productArray![indexPath.item]
-        cell.product = product
+        if searchActive {
+            let product = productFilterArray?[indexPath.item]
+            cell.product = product
+        } else {
+            let product = productArray![indexPath.item]
+            cell.product = product
+        }
         
         return cell
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoryProductController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
+class CategoryProductController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate{
 
     @IBOutlet weak var menuBar: MenuBarView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -21,6 +21,11 @@ class CategoryProductController: UIViewController, UICollectionViewDataSource, U
     let categoriesWomen = ["Skirts", "T-Shirts", "Pants&Leggings"]
     let categoriesMen = ["T-Shirts", "Suits", "Jeans"]
     var countCategory: CGFloat?
+    var filtered:[Product] = []
+    var searchActive : Bool = false
+    let searchBar = UISearchBar()
+    var feedCell: FeedCell?
+    var isTapSearchButton: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +40,8 @@ class CategoryProductController: UIViewController, UICollectionViewDataSource, U
         
         menuBar.categoriesController = self
         setupBarItem()
+        
+        searchBar.delegate = self
     }
     
     func setupBarItem() {
@@ -63,6 +70,13 @@ class CategoryProductController: UIViewController, UICollectionViewDataSource, U
     }
     
     @objc func handleSearch() {
+        if isTapSearchButton {
+           self.navigationItem.titleView = searchBar
+            self.isTapSearchButton = false
+        } else {
+            setupBarItem()
+            self.isTapSearchButton = true
+        }
         
     }
     
@@ -101,6 +115,8 @@ class CategoryProductController: UIViewController, UICollectionViewDataSource, U
         cell?.productArray = products
         cell?.categoryController = self
         cell?.navigationController = self.navigationController
+        feedCell = cell
+        
         
         if titleCategory == "MEN" {
             cell?.stringJsonData = urlJsonCategoryMen[indexPath.item]
@@ -118,6 +134,41 @@ class CategoryProductController: UIViewController, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = true;
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filtered = (self.feedCell?.productArray?.filter({ (item) -> Bool in
+            let countryText: NSString = item.nameProduct as NSString
+        
+            return (countryText.range(of: searchText, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
+                }))!
+        
+        if(filtered.count == 0){
+            searchActive = false;
+            self.feedCell?.searchActive = false
+            self.feedCell?.productFilterArray = filtered
+            self.feedCell?.collectionview.reloadData()
+        } else {
+            searchActive = true;
+            self.feedCell?.searchActive = true
+            self.feedCell?.productFilterArray = filtered
+            self.feedCell?.collectionview.reloadData()
+        }
+    }
 
 }

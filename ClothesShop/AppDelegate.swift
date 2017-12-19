@@ -17,6 +17,7 @@ import Stripe
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
+    static var navigationController: UINavigationController?
     static var managerObjectContext: NSManagedObjectContext?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -67,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let viewController = storyBoard.instantiateViewController(withIdentifier: "HomeController") as? HomeController
-                self.window?.rootViewController = viewController
+                AppDelegate.navigationController?.pushViewController(viewController!, animated: true)
             })
         }
     }

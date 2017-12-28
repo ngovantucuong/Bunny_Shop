@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         AppDelegate.managerObjectContext = persistentContainer.viewContext
         
         // Stripe Configuration
-        Stripe.setDefaultPublishableKey("sk_test_XbKli0lMlEtyH6t94jEqt0Nw")
+        STPPaymentConfiguration.shared().publishableKey = "sk_test_XbKli0lMlEtyH6t94jEqt0Nw"
  
         return true
     }
@@ -64,6 +64,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 if snapshot == nil {
                     databaseRef.child("user-profiles").child(uid).child("name").setValue(user?.displayName)
                     databaseRef.child("user-profiles").child(uid).child("email").setValue(user?.email)
+                    
+                    let imageName = NSUUID().uuidString
+                    let storage = Storage.storage().reference().child("profile_images").child("\(imageName).jpg")
+                    
+                    if let uploadData = UIImageJPEGRepresentation(#imageLiteral(resourceName: "userIcon"), 0.1) {
+                        storage.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                            if error != nil {
+                                print(error!.localizedDescription)
+                            }
+                            
+                            if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
+                                databaseRef.child("user-profiles").child(uid).child("profileImageUrl").setValue(profileImageUrl)
+                            }
+                        })
+                    }
                 }
                 
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)

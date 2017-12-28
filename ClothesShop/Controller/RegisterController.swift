@@ -104,7 +104,7 @@ class RegisterController: UIViewController, UIImagePickerControllerDelegate, UIN
     private func registerUserToDatabase(uid: String, values: [String: Any]) {
         // successfully authenticated user
         let ref = Database.database().reference(fromURL: "https://clothesshop-5e895.firebaseio.com/")
-        let usersReference = ref.child("users").child(uid)
+        let usersReference = ref.child("user-profiles").child(uid)
         
         usersReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
             if error != nil {

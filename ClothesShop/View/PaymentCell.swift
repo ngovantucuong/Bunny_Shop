@@ -81,8 +81,8 @@ class PaymentCell: UICollectionViewCell, UICollectionViewDelegate,UICollectionVi
             let expYear = UInt(expirationDate![1])
 
             // Send the card info to Strip to get the token
-            stripCard.number = self.numberVisaTextField.text
-            stripCard.cvc = self.cvcTextField.text
+            stripCard.number = numberVisaTextField.text
+            stripCard.cvc = cvcTextField.text
             stripCard.expMonth = expMonth!
             stripCard.expYear = expYear!
         }

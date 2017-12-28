@@ -29,7 +29,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VR3-bc-ZbM">
-                                <rect key="frame" x="80" y="21.5" width="190" height="23"/>
+                                <rect key="frame" x="80" y="21.5" width="216" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                             <constraint firstItem="LaR-df-wdo" firstAttribute="leading" secondItem="Vm7-CV-fIH" secondAttribute="leading" constant="79" id="FXk-2u-fq9"/>
                             <constraint firstItem="W6L-uN-Xz2" firstAttribute="top" secondItem="Vm7-CV-fIH" secondAttribute="top" constant="14" id="N9D-bn-bq1"/>
                             <constraint firstItem="LaR-df-wdo" firstAttribute="top" secondItem="VR3-bc-ZbM" secondAttribute="bottom" constant="15" id="PnC-AL-eDg"/>
-                            <constraint firstAttribute="trailing" secondItem="VR3-bc-ZbM" secondAttribute="trailing" constant="117" id="YVS-0B-IJf"/>
+                            <constraint firstAttribute="trailing" secondItem="VR3-bc-ZbM" secondAttribute="trailing" constant="91" id="YVS-0B-IJf"/>
                             <constraint firstItem="VR3-bc-ZbM" firstAttribute="top" secondItem="Vm7-CV-fIH" secondAttribute="top" constant="21" id="afA-Ay-QMZ"/>
                             <constraint firstAttribute="bottom" secondItem="VR3-bc-ZbM" secondAttribute="bottom" constant="17.5" id="nQL-X8-nGP"/>
                             <constraint firstItem="W6L-uN-Xz2" firstAttribute="leading" secondItem="Vm7-CV-fIH" secondAttribute="leading" constant="16" id="raY-Zj-acq"/>

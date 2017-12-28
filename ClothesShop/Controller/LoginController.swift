@@ -11,7 +11,7 @@ import GoogleSignIn
 import Firebase
 import FBSDKLoginKit
 
-class LoginController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate, UITabBarDelegate {
+class LoginController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var logoShop: UIImageViewX!
     @IBOutlet weak var email: UITextFieldX!
@@ -19,12 +19,12 @@ class LoginController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegat
     
     @IBOutlet weak var SignIn: GIDSignInButton!
     @IBOutlet weak var SignInFace: UIButtonX!
-    
+    static var isLoginFacebook: Bool = false
+    static var isLoginGmail: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        self.tabBarController?.tabBar.delegate = self
         setupLayout()
         
         GIDSignIn.sharedInstance().uiDelegate = self
@@ -63,13 +63,6 @@ class LoginController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegat
         
         let imageProfile = UIImage(named: "profile")?.withRenderingMode(.alwaysOriginal).resizeImage(targetSize: CGSize(width: 30, height: 30))
         self.tabBarController?.tabBar.items![3].image = imageProfile
-    }
-    
-    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if item.tag == 1 {
-            let homeController = HomeController()
-            self.present(homeController, animated: true, completion: nil)
-        }
     }
 
     private func setupLayout() {
@@ -120,6 +113,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegat
     }
     
     @objc func handleSignInFacebook() {
+        LoginController.isLoginFacebook = true
         let fbLoginManager = FBSDKLoginManager()
         fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
             if error != nil {
@@ -148,7 +142,25 @@ class LoginController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegat
                     let snapshot = snapshot.value as? NSDictionary
                     if snapshot == nil {
                         databaseRef.child("user-profiles").child(uid).child("name").setValue(user?.displayName)
-                        databaseRef.child("user-profiles").child(uid).child("email").setValue(user?.email)
+                        if user?.email == nil {
+                            let email = "\(user!.displayName ?? "keylia")@gmail.com"
+                            databaseRef.child("user-profiles").child(uid).child("email").setValue(email)
+                        }
+                        
+                        let imageName = NSUUID().uuidString
+                        let storage = Storage.storage().reference().child("profile_images").child("\(imageName).jpg")
+                        
+                        if let uploadData = UIImageJPEGRepresentation(#imageLiteral(resourceName: "userIcon"), 0.1) {
+                            storage.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                                if error != nil {
+                                    print(error!.localizedDescription)
+                                }
+                                
+                                if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
+                                    databaseRef.child("user-profiles").child(uid).child("profileImageUrl").setValue(profileImageUrl)
+                                }
+                            })
+                        }
                     }
                     
                     if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeController") {
@@ -161,6 +173,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegat
     }
     
     @objc func handleSignInGmail() {
+        LoginController.isLoginGmail = true
         AppDelegate.navigationController = self.navigationController
         GIDSignIn.sharedInstance().signIn()
     }

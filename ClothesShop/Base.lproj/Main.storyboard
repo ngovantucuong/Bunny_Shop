@@ -213,7 +213,7 @@
         <!--Login Controller-->
         <scene sceneID="EFR-jD-cna">
             <objects>
-                <viewController id="9lV-Os-1sI" customClass="LoginController" customModule="ClothesShop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginController" id="9lV-Os-1sI" customClass="LoginController" customModule="ClothesShop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qaq-4q-Zny">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1188,7 +1188,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="218"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tYp-dc-kO1">
-                                        <rect key="frame" x="100.5" y="10" width="174.5" height="198"/>
+                                        <rect key="frame" x="100.5" y="19" width="174.5" height="180"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="57D-D6-oTZ" customClass="UIImageViewX" customModule="ClothesShop" customModuleProvider="target">
                                                 <rect key="frame" x="27.5" y="0.0" width="120" height="120"/>
@@ -1209,12 +1209,12 @@
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Kanye West" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtN-DQ-YaV">
-                                                <rect key="frame" x="21" y="120" width="133" height="57.5"/>
+                                                <rect key="frame" x="21" y="120" width="133" height="39.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kanyewest@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3W-3P-5e5">
-                                                <rect key="frame" x="0.0" y="177.5" width="174.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="159.5" width="174.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1226,7 +1226,7 @@
                                     <constraint firstItem="tYp-dc-kO1" firstAttribute="centerX" secondItem="WCR-mh-vBQ" secondAttribute="centerX" id="0dC-Vp-1QU"/>
                                     <constraint firstAttribute="height" constant="218" id="Nt7-vY-pB8"/>
                                     <constraint firstItem="tYp-dc-kO1" firstAttribute="centerY" secondItem="WCR-mh-vBQ" secondAttribute="centerY" id="adI-VE-IhX"/>
-                                    <constraint firstItem="tYp-dc-kO1" firstAttribute="top" secondItem="WCR-mh-vBQ" secondAttribute="top" constant="10" id="hU0-jP-tT5"/>
+                                    <constraint firstItem="tYp-dc-kO1" firstAttribute="top" secondItem="WCR-mh-vBQ" secondAttribute="top" constant="19" id="hU0-jP-tT5"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iZY-D1-7D9">

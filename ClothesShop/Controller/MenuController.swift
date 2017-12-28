@@ -8,8 +8,10 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
+import FBSDKLoginKit
 
-class MenuController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MenuController: UIViewController, UITableViewDataSource, UITableViewDelegate, GIDSignInUIDelegate {
 
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameProfile: UILabel!
@@ -19,7 +21,7 @@ class MenuController: UIViewController, UITableViewDataSource, UITableViewDelega
     let cellID = "cellID"
     
     
-    var itemSlideMenu: [slideMenuItem] = [slideMenuItem(imageIcon: #imageLiteral(resourceName: "images"), content: "Home"), slideMenuItem(imageIcon: #imageLiteral(resourceName: "sale"), content: "Sales"), slideMenuItem(imageIcon: #imageLiteral(resourceName: "shop"), content: "In Store"), slideMenuItem(imageIcon: #imageLiteral(resourceName: "shopping-cart"), content: "My Cart"), slideMenuItem(imageIcon: #imageLiteral(resourceName: "profile"), content: "Profile")]
+    var itemSlideMenu: [slideMenuItem] = [slideMenuItem(imageIcon: #imageLiteral(resourceName: "images"), content: "Home"), slideMenuItem(imageIcon: #imageLiteral(resourceName: "sale"), content: "Sales"), slideMenuItem(imageIcon: #imageLiteral(resourceName: "shop"), content: "In Store"), slideMenuItem(imageIcon: #imageLiteral(resourceName: "shopping-cart"), content: "My Cart"), slideMenuItem(imageIcon: #imageLiteral(resourceName: "profile"), content: "Profile"), slideMenuItem(imageIcon: #imageLiteral(resourceName: "logout"), content: "Logout")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +33,15 @@ class MenuController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let uiNib = UINib(nibName: "SlideMenuCell", bundle: nil)
         tableView.register(uiNib, forCellReuseIdentifier: cellID)
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+        self.navigationController?.isNavigationBarHidden = true
     }
 
     private func setupLayout() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        let refDatabase = Database.database().reference().child("users").child(uid)
+        let refDatabase = Database.database().reference().child("user-profiles").child(uid)
         refDatabase.observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let user = User(dictionary: dictionary)
@@ -67,16 +72,24 @@ class MenuController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.item == 4 {
-            let firebaseAuth = Auth.auth()
-            do {
-                try firebaseAuth.signOut()
-                
-                let loginController = LoginController()
-                UIApplication.shared.keyWindow?.rootViewController = loginController
-            } catch let signOutError as NSError {
-                print ("Error signing out: %@", signOutError)
+        if indexPath.item == 5 {
+           
+            if LoginController.isLoginGmail {
+               GIDSignIn.sharedInstance().signOut()
+            } else if LoginController.isLoginFacebook {
+               FBSDKLoginManager().logOut()
+            } else {
+                let firebaseAuth = Auth.auth()
+                do {
+                    try firebaseAuth.signOut()
+                } catch let signOutError as NSError {
+                    print ("Error signing out: %@", signOutError)
+                }
             }
+            
+            let loginController = self.storyboard?.instantiateViewController(withIdentifier: "LoginController")
+            self.present(loginController!, animated: true, completion: nil)
+            CoreData.shareCoreData.deleteAllData()
         }
     }
 }
